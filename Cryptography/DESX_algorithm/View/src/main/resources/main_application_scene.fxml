@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="531.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Krypto.ApplicationController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="481.0" prefWidth="703.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Rectangle id="fileStatus" arcHeight="5.0" arcWidth="5.0" fill="#cdcaff" height="531.0" stroke="BLACK" strokeType="INSIDE" width="722.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9c88fc" height="69.0" layoutX="-60.0" layoutY="-31.0" stroke="#8b46c3" strokeType="INSIDE" width="781.0" />
+                <Label alignment="CENTER" layoutX="183.0" layoutY="8.0" style="&#10;" text="Szyfrowanie za pomocą DESX" textAlignment="CENTER" textFill="WHITE" wrapText="false">
+                    <font>
+                        <Font name="Cascadia Code Regular" size="18.0" />
+                    </font>
+                </Label>
+                <VBox layoutX="24.0" layoutY="344.0" prefHeight="96.0" prefWidth="256.0">
+                    <children>
+                        <TextField fx:id="key1" prefHeight="25.0" prefWidth="233.0" />
+                        <TextField fx:id="key2" />
+                        <TextField fx:id="key3" />
+                    </children>
+                </VBox>
+                <TextArea fx:id="TextAreaB" layoutX="14.0" layoutY="132.0" prefHeight="171.0" prefWidth="275.0" wrapText="true" />
+                <TextArea fx:id="TextAreaA" layoutX="452.0" layoutY="132.0" prefHeight="171.0" prefWidth="256.0" wrapText="true" />
+                <Button fx:id="chooseFileB" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleSelectFileBeforeDESX" prefHeight="25.0" prefWidth="256.0" text="Wybierz plik do zaszyfrowania" />
+                <Button fx:id="encryptButton" layoutX="331.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleEncrypt" prefHeight="62.0" prefWidth="86.0" text="Zaszyfruj">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Button>
+                <Button fx:id="decryptButton" layoutX="331.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleDecrypt" prefHeight="62.0" prefWidth="86.0" text="Odszyfruj">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Button>
+                <Label fx:id="sourceDecrypted" contentDisplay="CENTER" layoutX="16.0" layoutY="77.0" prefHeight="17.0" prefWidth="234.0" textAlignment="CENTER" wrapText="true" />
+                <Label layoutX="31.0" layoutY="313.0" prefHeight="36.0" prefWidth="242.0" text="Wpisz lub wygeneruj klucze">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Button fx:id="generateButton" layoutX="92.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleGenerate" prefHeight="52.0" prefWidth="119.0" text="Generuj" />
+                <Button fx:id="saveFileBeforeDESX" layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleSaveFileBeforeDESX" prefHeight="25.0" prefWidth="86.0" text="Zapisz plik" />
+                <Button fx:id="saveFileAfterDESX" layoutX="622.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleSaveFileAfterDESX" prefHeight="25.0" prefWidth="86.0" text="Zapisz plik" />
+                <Label layoutX="183.0" layoutY="102.0" prefHeight="25.0" prefWidth="101.0" text="Tekst jawny">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Label layoutX="448.0" layoutY="104.0" text="Tekst zaszyfrowany">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Button fx:id="chooseFileA" layoutX="452.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleSelectFileAfterDESX" prefHeight="25.0" prefWidth="256.0" text="Wybierz plik do odszyfrowania" />
+                <Label fx:id="sourceEncrypted" contentDisplay="CENTER" layoutX="452.0" layoutY="77.0" prefHeight="17.0" prefWidth="256.0" textAlignment="CENTER" wrapText="true" />
+                <TextArea fx:id="fileStatus" editable="false" layoutX="380.0" layoutY="331.0" prefHeight="181.0" prefWidth="325.0" style="-fx-background-color: white; -fx-control-inner-background: white; -fx-text-fill: black; -fx-box-border: transparent; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-padding: 5px;" text="Gotowy" visible="false" wrapText="true">
+                    <font>
+                        <Font name="Cambria" size="14.0" />
+                    </font>
+                </TextArea>
+                <Button fx:id="LeftX" layoutX="246.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleClearPathB" text="X" visible="false" />
+                <Button fx:id="RightX" layoutX="684.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleClearPathA" text="X" visible="false" />
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
