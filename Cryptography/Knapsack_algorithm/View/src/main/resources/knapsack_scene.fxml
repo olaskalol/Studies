@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Krypto.ApplicationController">
+    <children>
+        <AnchorPane VBox.vgrow="ALWAYS">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdcaff" height="600.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9c88fc" height="69.0" stroke="#8b46c3" strokeType="INSIDE" width="800.0" />
+
+                <Label alignment="CENTER" layoutX="24.0" layoutY="20.0" text="Szyfrowanie Plecakowe" textFill="WHITE">
+                    <font>
+                        <Font name="Cascadia Code Regular" size="18.0" />
+                    </font>
+                </Label>
+
+
+                <TextArea fx:id="fileStatus" editable="false" layoutX="14.0" layoutY="540.0" prefHeight="45.0" prefWidth="772.0" style="-fx-control-inner-background: #ffffff; -fx-text-fill: black;" text="" wrapText="true">
+                    <font><Font name="System Bold" size="12.0" /></font>
+                </TextArea>
+
+                <TabPane layoutX="14.0" layoutY="85.0" prefHeight="445.0" prefWidth="772.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="1. Menedżer Kluczy">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #e6e5ff;">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="Długość wektora n:">
+                                            <font><Font size="14.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="knapN" layoutX="240.0" layoutY="12.0" prefWidth="60.0" text="512" />
+
+                                        <Button layoutX="320.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleKnapGenerateKeys" prefHeight="25.0" prefWidth="150.0" text="Generuj Klucze" />
+
+                                        <Label layoutX="14.0" layoutY="50.0" text="KLUCZ PUBLICZNY :" textFill="#006b0b">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextArea fx:id="genPubKey" editable="false" layoutX="14.0" layoutY="70.0" prefHeight="100.0" prefWidth="744.0" wrapText="true" />
+
+                                        <Label layoutX="14.0" layoutY="180.0" text="KLUCZ PRYWATNY (Format: W ; M ; wektor):" textFill="#940000">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextArea fx:id="genPrivKey" editable="false" layoutX="14.0" layoutY="200.0" prefHeight="100.0" prefWidth="744.0" wrapText="true" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <Tab text="2. Szyfrowanie (Nadawca)">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #e6e5ff;">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="Klucz publiczny :" />
+                                        <TextArea fx:id="encPubKey" layoutX="14.0" layoutY="35.0" prefHeight="80.0" prefWidth="744.0" wrapText="true" />
+
+                                        <Label layoutX="14.0" layoutY="130.0" text="Wiadomość / Plik do zaszyfrowania:" />
+                                        <TextArea fx:id="encInput" layoutX="14.0" layoutY="150.0" prefHeight="120.0" prefWidth="360.0" promptText="Wpisz tekst ręcznie lub wczytaj z pliku..." wrapText="true" />
+
+                                        <Button layoutX="14.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleSelectFileBeforeDESX" prefWidth="175.0" text="Wczytaj plik z dysku" />
+                                        <Label fx:id="sourceDecrypted" layoutX="200.0" layoutY="284.0" prefWidth="174.0" text="..." />
+
+                                        <Button layoutX="331.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleKnapEncrypt" prefHeight="60.0" prefWidth="110.0" text="ZASZYFRUJ">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Button>
+
+                                        <Label layoutX="398.0" layoutY="130.0" text="Wynik (Kryptogram):" />
+                                        <TextArea fx:id="encOutput" editable="false" layoutX="398.0" layoutY="150.0" prefHeight="120.0" prefWidth="360.0" wrapText="true" />
+                                        <Button layoutX="398.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleSaveFileAfterDESX" prefWidth="175.0" text="Zapisz kryptogram do pliku" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <!-- ZAKŁADKA 3: DESZYFROWANIE (ODBIORCA) -->
+                        <Tab text="3. Deszyfrowanie (Odbiorca)">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #e6e5ff;">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="Klucz prywatny (Wklej: W ; M ; wektor):" />
+                                        <TextArea fx:id="decPrivKey" layoutX="14.0" layoutY="35.0" prefHeight="80.0" prefWidth="744.0" wrapText="true" />
+
+                                        <Label layoutX="14.0" layoutY="130.0" text="Kryptogram / Plik do odszyfrowania:" />
+                                        <TextArea fx:id="decInput" layoutX="14.0" layoutY="150.0" prefHeight="120.0" prefWidth="360.0" promptText="Wklej kryptogram lub wczytaj plik..." wrapText="true" />
+
+                                        <Button layoutX="14.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleSelectFileAfterDESX" prefWidth="175.0" text="Wczytaj kryptogram z dysku" />
+                                        <Label fx:id="sourceEncrypted" layoutX="200.0" layoutY="284.0" prefWidth="174.0" text="..." />
+
+                                        <Button layoutX="331.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleKnapDecrypt" prefHeight="60.0" prefWidth="110.0" text="ODSZYFRUJ">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Button>
+
+                                        <Label layoutX="398.0" layoutY="130.0" text="Wynik:" />
+                                        <TextArea fx:id="decOutput" editable="false" layoutX="398.0" layoutY="150.0" prefHeight="120.0" prefWidth="360.0" wrapText="true" />
+                                        <Button layoutX="398.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleSaveFileBeforeDESX" prefWidth="175.0" text="Zapisz odzyskany plik" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

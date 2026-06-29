@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="531.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Krypto.ApplicationController">
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdcaff" height="531.0" stroke="BLACK" strokeType="INSIDE" width="722.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9c88fc" height="69.0" layoutX="0.0" layoutY="0.0" stroke="#8b46c3" strokeType="INSIDE" width="722.0" />
+
+        <Label alignment="CENTER" layoutX="183.0" layoutY="20.0" text="Szyfrowanie za pomocą DESX" textFill="WHITE">
+            <font><Font name="Cascadia Code Regular" size="18.0" /></font>
+        </Label>
+
+        <Button layoutX="540.0" layoutY="20.0" onAction="#switchToKnapsack" prefWidth="160.0" text="Tryb Plecakowy" style="-fx-background-color: #ffd700; -fx-font-family: 'Cascadia Code'; -fx-font-weight: bold;" />
+
+        <VBox layoutX="24.0" layoutY="344.0" prefHeight="96.0" prefWidth="256.0">
+            <TextField fx:id="key1" promptText="Klucz 1" />
+            <TextField fx:id="key2" promptText="Klucz 2" />
+            <TextField fx:id="key3" promptText="Klucz 3" />
+        </VBox>
+
+        <TextArea fx:id="TextAreaB" layoutX="14.0" layoutY="132.0" prefHeight="171.0" prefWidth="275.0" wrapText="true" />
+        <TextArea fx:id="TextAreaA" layoutX="452.0" layoutY="132.0" prefHeight="171.0" prefWidth="256.0" wrapText="true" />
+
+        <Button layoutX="331.0" layoutY="143.0" onAction="#handleEncrypt" prefHeight="62.0" prefWidth="86.0" text="Zaszyfruj" />
+        <Button layoutX="331.0" layoutY="234.0" onAction="#handleDecrypt" prefHeight="62.0" prefWidth="86.0" text="Odszyfruj" />
+
+        <Button layoutX="14.0" layoutY="46.0" onAction="#handleSelectFileBeforeDESX" prefWidth="256.0" text="Wybierz plik do zaszyfrowania" />
+        <Label fx:id="sourceDecrypted" layoutX="16.0" layoutY="77.0" prefWidth="234.0" />
+        <Button fx:id="LeftX" layoutX="246.0" layoutY="73.0" onAction="#handleClearPathB" text="X" visible="false" />
+
+        <TextArea fx:id="fileStatus" editable="false" layoutX="380.0" layoutY="331.0" prefHeight="181.0" prefWidth="325.0" style="-fx-control-inner-background: white;" text="Gotowy" visible="true" wrapText="true" />
+        <Button layoutX="92.0" layoutY="440.0" onAction="#handleGenerate" prefHeight="52.0" prefWidth="119.0" text="Generuj" />
+    </AnchorPane>
+</VBox>
